@@ -1,0 +1,21 @@
+name: 98router
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip>=25.3
+  - pip:
+    - --index-url=https://pypi.tuna.tsinghua.edu.cn/simple
+    - --trusted-host=pypi.tuna.tsinghua.edu.cn
+    - fastkml==1.4.0
+    - haversine==2.9.0
+    - lxml==6.0.2
+    - pyproj==3.7.2
+    - rdp==0.8
+    - numpy>=2.0
+    - pandas>=2.3.0
+    - scipy>=1.16.0
+    - opencv-python>=4.12.0
+    - dashscope>=1.25.5
+    - flask>=3.1.2
+    - flask_cors>=6.0.2

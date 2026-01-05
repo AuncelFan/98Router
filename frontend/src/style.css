@@ -1,0 +1,419 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+}
+
+body {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+    background-color: #f8f9fa;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+/* 文件上传区域美化 */
+.upload-box {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+}
+
+.file-input-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.file-input-hidden {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+}
+
+.custom-file-btn {
+    padding: 9px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    /* 修正：15px 按钮常规大小 */
+    transition: all 0.2s ease;
+    margin-right: 10px;
+}
+
+.custom-file-btn:hover {
+    background-color: #0056b3;
+}
+
+.file-name-text {
+    font-size: 14px;
+    /* 修正：14px 辅助文本 */
+    color: #6c757d;
+    margin-left: 5px;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#kmlFileInput {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 15px;
+    /* 修正：15px 输入框文本 */
+    color: #495057;
+}
+
+#parseBtn {
+    padding: 9px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+#parseBtn:hover {
+    background-color: #0056b3;
+}
+
+/* 状态提示区域 */
+#statusText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    height: 50px;
+}
+
+.tip {
+    color: #6c757d;
+}
+
+.loading {
+    color: #007bff;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.success {
+    color: #28a745;
+}
+
+/* 解析结果展示区域美化 */
+#resultArea {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.result-grid-wrap,
+.result-grid-wrap-2,
+.result-grid-wrap-3 {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.result-title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    /* 新增：标题和内容间距 */
+}
+
+.result-title-text {
+    color: #28a745;
+    font-size: 20px;
+    /* 修正：20px 结果标题 */
+    align-self: flex-start;
+}
+
+.result-btn {
+    font-size: 14px;
+    padding: 6px 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    align-self: flex-start;
+    border: none;
+    border-radius: 9px;
+    transition: background-color 0.2s;
+}
+
+.result-btn:hover {
+    background-color: #0056b3;
+}
+
+.result-item {
+    font-size: 16px;
+    color: #2c3e50;
+    margin: 5px 0;
+    width: 35%;
+}
+
+.result-item span {
+    font-weight: 600;
+    color: #007bff;
+    margin-left: 6px;
+}
+
+/* 难度条容器 */
+.difficulty-container {
+    display: none;
+    background: #fff;
+    padding-top: 10px;
+}
+
+.difficulty-bar {
+    position: relative;
+    width: 85%;
+    height: 25px;
+    margin: 0 auto;
+    border-radius: 15px;
+    /* 核心：难度色相渐变 从轻→重 */
+    background: linear-gradient(90deg,
+            #4ade80,
+            #a3e635,
+            #facc15,
+            #fbbf24,
+            #f97316,
+            #f43f5e,
+            #e11d48,
+            #be123c,
+            #9f1239,
+            #7f1d1d);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 区间标签 */
+.difficulty-labels {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -23px;
+}
+
+.label-text {
+    font-size: 14px;
+    /* 修正：14px 刻度标签 */
+    color: #ffffff;
+    font-weight: 500;
+    text-align: center;
+    text-shadow:
+        -1px -1px 0.5px #000,
+        1px -1px 0.5px #000,
+        -1px 1px 0.5px #000,
+        1px 1px 0.5px #000;
+}
+
+.difficulty-arrow {
+    position: relative;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 18px solid #1e40af;
+    cursor: pointer;
+    transition: border-top-color 0.2s;
+    z-index: 10;
+}
+
+.difficulty-arrow:hover {
+    border-top-color: #3b82f6;
+}
+
+/* 箭头下方的当前难度值文本 */
+.difficulty-value {
+    position: relative;
+    transform: translateX(-50%);
+    color: #1e40af;
+    font-size: 16px;
+    /* 修正：16px 难度值 */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 1-10刻度标尺容器 */
+.difficulty-scale {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    bottom: 15px;
+}
+
+/* 刻度数字样式 */
+.scale-num {
+    color: #666;
+    font-size: 14px;
+    /* 修正：14px 刻度数字 */
+}
+
+/* 弹出提示样式 */
+.pop-container {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: #888888 0px 0px 5px 0px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    /* 修正：14px 弹窗提示 */
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pop-container.show {
+    opacity: 1;
+}
+
+#map {
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-height: 300px;
+    display: none;
+}
+
+
+/* 移动端适配（<=600px）*/
+@media (max-width: 600px) {
+
+    body {
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 25px;
+    }
+
+    /* 上传区域：横向 → 纵向 */
+    .upload-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .file-input-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .custom-file-btn,
+    #parseBtn {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .file-name-text {
+        max-width: 100%;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    /* 状态提示 */
+    #statusText {
+        font-size: 14px;
+    }
+
+    /* 结果区 */
+    #resultArea {
+        padding: 15px 12px;
+    }
+
+    .result-title-text {
+        font-size: 16px;
+    }
+
+    .result-btn {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    .result-item {
+        width: 50%;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    /* 难度条 */
+    .difficulty-container {
+        padding-top: 0;
+    }
+
+    .difficulty-bar {
+        width: 100%;
+        height: 25px;
+    }
+
+    .difficulty-labels {
+        width: 95%;
+        top: -21px;
+    }
+
+    .difficulty-scale {
+        width: 95%;
+    }
+
+    .label-text,
+    .scale-num {
+        font-size: 12px;
+    }
+
+    .difficulty-arrow {
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-top: 14px solid #1e40af;
+    }
+
+    .difficulty-value {
+        font-size: 14px;
+    }
+
+    /* 弹窗 */
+    .pop-container {
+        top: 60px;
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+}

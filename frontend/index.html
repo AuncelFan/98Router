@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>98毅行轨迹解析</title>
+    <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+    <h2>98毅行轨迹解析</h2>
+
+    <!-- 文件上传区域 -->
+    <div class="upload-box">
+        <div class="file-input-box">
+            <input type="file" id="kmlFileInput" accept=".kml" class="file-input-hidden" />
+            <button type="button" class="custom-file-btn">上传KML文件</button>
+            <span id="fileNameText" class="file-name-text">未选择文件</span>
+        </div>
+        <button id="parseBtn">解析文件</button>
+    </div>
+
+    <!-- 状态提示区域 -->
+    <div id="statusText" class="tip"></div>
+
+    <!-- 解析结果展示区域 -->
+    <div id="resultArea" style="display: none;">
+        <div class="result-title">
+            <div class="result-title-text">解析结果</div>
+            <div class="result-btn" id="show-speed-btn">显示/关闭时间信息</div>
+            <div class="result-btn" id="save-result-btn">复制为图片</div>
+        </div>
+        <div id="result-info">
+            <div class="result-grid-wrap">
+                <div class="result-item">总距离: <span id="total_distance_km"></span></div>
+                <div class="result-item">总爬升: <span id="total_elevation_m"></span></div>
+            </div>
+            <div class="result-grid-wrap-2" id="time-info">
+                <div class="result-item">总耗时: <span id="total_time_h"></span></div>
+                <div class="result-item">平均速度: <span id="speed_mean_km_h"></span></div>
+            </div>
+            <div class="result-grid-wrap-3">
+                <div class="result-item">体能等级: <span id="tired_level"></span></div>
+                <div class="result-item">陡峭指数: <span id="elev_level"></span></div>
+            </div>
+            <div class="difficulty-container">
+                <div class="difficulty-value" id="diffValue"></div>
+                <div class="difficulty-arrow" id="diffArrow"></div>
+                <div class="difficulty-bar" id="diffBar"></div>
+                <div class="difficulty-labels">
+                    <span class="label-text">简单</span>
+                    <span class="label-text">普通</span>
+                    <span class="label-text">困难</span>
+                    <span class="label-text">极难</span>
+                </div>
+                <div class="difficulty-scale" id="diffScale"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 地图展示区域 -->
+    <div id="map"></div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
