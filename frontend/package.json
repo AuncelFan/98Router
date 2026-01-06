@@ -8,6 +8,7 @@
     "dev:debug": "node --inspect-brk node_modules/vite/bin/vite.js"
   },
   "dependencies": {
+    "coordtransform": "^2.1.2",
     "html-to-image": "^1.11.13",
     "ol": "^10.7.0"
   },
